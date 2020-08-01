@@ -106,6 +106,7 @@
 
    	  	var vm = this;
    	vm.title = "RegisterController";
+   	vm.error = '';
 
    	vm.register = function() {
    		// console.log(vm.user);
@@ -118,6 +119,9 @@
    		.then(function(response) {
    			console.log(response)
 
+   		}, function(err) {
+   			// console.log(err)
+   			vm.error = err.data.errmsg;
    		});
    	}
 
