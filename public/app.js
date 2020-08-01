@@ -9,7 +9,10 @@
    	$routeProvider.when('/', {
    		templateUrl: './templates/main.html',
    		controller: 'MainController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: false
+   		}
 
    	});
 
@@ -17,14 +20,20 @@
    	 	$routeProvider.when('/login', {
    		templateUrl: './templates/login.html',
    		controller: 'loginController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: false
+   		}
 
    	});
 
    	 	$routeProvider.when('/register', {
    		templateUrl: './templates/register.html',
    		controller: 'RegisterController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: false
+   		}
 
    	});
 
@@ -32,23 +41,33 @@
    	 	$routeProvider.when('/polls', {
    		templateUrl: './templates/polls.html',
    		controller: 'PollsController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: false
+   		}
 
    	});
 
    	 	 $routeProvider.when('/polls/:id', {
    		templateUrl: './templates/poll.html',
    		controller: 'PollController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: false
+   		}
 
    	});
 
    	 	$routeProvider.when('/profile', {
    		templateUrl: './templates/profile.html',
    		controller: 'ProfileController',
-   		controllerAs: 'vm'
+   		controllerAs: 'vm',
+   		access: {
+   			restricted: true
+   		}
 
    	});
+   	 	$routeProvider.otherwise('/');
 
 
 
@@ -58,7 +77,9 @@
 
    function MainController($location, $window) {
 
-   	// body...
+   	var vm = this;
+   	vm.title = "MainController";
+   	console.log('in main ctrl');
 
 
    }
@@ -124,4 +145,4 @@
 
 
 
-}())
+}());

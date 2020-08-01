@@ -64,6 +64,7 @@ app.use(morgan('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.use(express.static(__dirname + '/public'));
 
