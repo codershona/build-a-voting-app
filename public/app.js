@@ -117,7 +117,9 @@
 
    		$http.post('/api/register', vm.user)
    		.then(function(response) {
-   			console.log(response)
+   			// console.log(response)
+   			// $window
+   			console.log(response);
 
    		}, function(err) {
    			// console.log(err)

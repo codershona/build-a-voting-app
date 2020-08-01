@@ -21,7 +21,12 @@ router.post('/register', function(request, response) {
       		return response.status(400).send(err)
       	}
       	else {
-      		return response.status(201).send(document)
+      		// return response.status(201).send(document)
+      		var token = jwt.sign({
+      			data: document
+      		}, process.env.secret, { expiresIn: 3600 })
+      		return response.status(201).send(token);
+      		
       	}
       })
       
