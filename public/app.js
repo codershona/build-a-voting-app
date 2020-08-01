@@ -70,6 +70,10 @@
 
    	// body...
 
+   	var vm = this;
+   	vm.title = "LoginController";
+
+
    	}
 
 
@@ -79,6 +83,9 @@
 
    	// body...
 
+   	  	var vm = this;
+   	vm.title = "RegisterController";
+
    	}
 
 
@@ -87,6 +94,8 @@
    function ProfileController($location, $window) {
 
    	// body...
+   	  	var vm = this;
+   	vm.title = "ProfileController";
 
    	}
 
@@ -96,6 +105,9 @@
 
    	// body...
 
+   	  	var vm = this;
+   	vm.title = "PollsController";
+
    	}
 
    	app.controller('PollController', PollController);
@@ -103,6 +115,9 @@
    function PollController($location, $window) {
 
    	// body...
+
+   	  	var vm = this;
+   	vm.title = "PollController";
 
    	}
 
