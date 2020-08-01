@@ -16,7 +16,7 @@ var morgan = require('morgan');
 
 var mongoose = require('mongoose');
 
-var bodyParser = require('bodyParser');
+var bodyParser = require('body-parser');
 var dotenv = require('dotenv');
 
 // Create an express application:
@@ -69,7 +69,7 @@ app.use(express.static(__dirname + '/public'));
 
 app.get("*", function(request, response) {
 
-	response.sendFile(__dirname + '/public/indx.html');
+	response.sendFile(__dirname + '/public/index.html');
 
 });
 
