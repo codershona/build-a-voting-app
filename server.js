@@ -84,5 +84,5 @@ app.listen(port, function() {
 
 // testing server is working or not:
 
-console.log(process.env.secret);
+// console.log(process.env.secret);
 
