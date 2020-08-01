@@ -6,6 +6,10 @@ var db = 'mongodb://localhost:27017/free-code-camp-voting';
 
 var port = process.env.PORT || 8000;
 
+// Load in router
+
+var router = require('./routes/api');
+
 
 
 // Load in node modules:
@@ -67,6 +71,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.use(express.static(__dirname + '/public'));
+
+app.use('/api', router);
 
 app.get("*", function(request, response) {
 

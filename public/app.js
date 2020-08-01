@@ -100,12 +100,26 @@
 
    	app.controller('RegisterController', RegisterController);
 
-   function RegisterController($location, $window) {
+   function RegisterController($location, $window, $http) {
 
    	// body...
 
    	  	var vm = this;
    	vm.title = "RegisterController";
+
+   	vm.register = function() {
+   		// console.log(vm.user);
+   		if(!vm.user) {
+   			console.log('Invalid credentials');
+   			return;
+   		}
+
+   		$http.post('/api/register', vm.user)
+   		.then(function(response) {
+   			console.log(response)
+
+   		});
+   	}
 
    	}
 
