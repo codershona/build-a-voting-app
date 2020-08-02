@@ -119,7 +119,9 @@
    		.then(function(response) {
    			// console.log(response)
    			// $window
-   			console.log(response);
+   			// console.log(response);
+            $window.localStorage.token = response.data;
+            $location.path('/profile');
 
    		}, function(err) {
    			// console.log(err)
