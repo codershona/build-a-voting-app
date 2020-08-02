@@ -4,6 +4,16 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
+// Verification:
+
+route.get('/verify', function(request, response) {
+  // if(request.headers.authorization)
+  console.log(request.headers);
+
+
+
+})
+
 // Login :
 router.post('/login', function(request, response) {
 
