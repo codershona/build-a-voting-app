@@ -232,7 +232,15 @@
 
       }]
 
-      console.log(vm.options);
+      vm.addOption = function() {
+         vm.options.push({
+            name: '',
+            votes: 0
+            
+         })
+      }
+
+      // console.log(vm.options);
 
    	}
 
