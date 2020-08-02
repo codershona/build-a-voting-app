@@ -226,6 +226,14 @@
    	  	var vm = this;
    	vm.title = "PollsController";
 
+      vm.options = [{
+         name: '',
+         votes: 0
+
+      }]
+
+      console.log(vm.options);
+
    	}
 
    	app.controller('PollController', PollController);

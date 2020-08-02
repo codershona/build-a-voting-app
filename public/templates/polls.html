@@ -1,1 +1,12 @@
 <h3>{{vm.title}}</h3>
+<hr>
+
+<input type="text" ng-model="poll.name" placeholder="Names of Poll....">
+
+
+<hr>
+
+<input type="text" ng-model="vm.options[$index].name" ng-repeat="option in vm.options" placeholder="Option Names">
+
+
+
