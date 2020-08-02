@@ -206,6 +206,15 @@
 
         }
 
+        vm.logOut = function() {
+
+         delete $window.localStorage.token;
+         vm.user = null;
+         $location.path('/login');
+
+
+        }
+
    	}
 
    	app.controller('PollsController', PollsController);
