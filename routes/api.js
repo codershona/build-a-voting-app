@@ -4,6 +4,47 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
+// Login :
+router.post('/login', function(request, response) {
+
+  if(request.body.name && request.body.password) {
+    User.findOne({ name: request.body.name }, function(err, user) {
+      if(err) {
+        console.log('err with database')
+        return response.status(400).send('An error has occured. Please try again');
+
+      }
+       if(!user) {
+        console.log('no user found')
+        return response.status(404).send('No user has been registered with these credentials');
+
+       }
+
+       if(bcrypt.compareSync(request.body.password, user.password)) {
+        
+        console.log('pasword match')
+        var token = jwt.sign({
+          data: user
+
+        }, process.env.secret, { expiresIn: 3600 })
+        // return response.status(200).send(user);
+         return response.status(200).send(token);
+
+       }
+       console.log('invalid password')
+
+       return response.status(400).send('Password is not correct!');
+
+
+    })
+
+  }
+  else {
+    return response.status(400).send('Please Enter valid credentials!');
+  }
+
+});
+
 // Register:
 
 router.post('/register', function(request, response) {

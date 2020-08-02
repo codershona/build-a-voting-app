@@ -19,7 +19,7 @@
 
    	 	$routeProvider.when('/login', {
    		templateUrl: './templates/login.html',
-   		controller: 'loginController',
+   		controller: 'LoginController',
    		controllerAs: 'vm',
    		access: {
    			restricted: false
@@ -87,12 +87,34 @@
 
     app.controller('LoginController', LoginController);
 
-   function LoginController($location, $window) {
+   function LoginController($location, $window, $http) {
 
    	// body...
 
    	var vm = this;
    	vm.title = "LoginController";
+      vm.error = '';
+
+      vm.login = function() {
+         if(vm.user) {
+          $http.post('/api/login', vm.user)
+            .then(function(response) {
+               // console.log(response);
+               // console.log('Success in Login In');
+               $window.localStorage.token = response.data;
+               $location.path('/profile');
+               
+
+
+            }, function(err) {
+              vm.error = err;
+            })
+
+         }
+         else {
+            console.log('No Credentials supplied!')
+         }
+      }
 
 
    	}
@@ -146,7 +168,7 @@
         // console.log(payload);
         if(payload) {
          vm.user = payload;
-         console.log(vm.user);
+         // console.log(vm.user);
 
         }
 
