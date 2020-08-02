@@ -4,6 +4,19 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
+var Polls = require('../models/polls');
+
+// Create a new poll & POST to polls:
+
+
+router.post('/api/polls', authenticate, function(request, response) {
+    
+
+
+
+})
+
+
 // Verification:
 
 // router.get('/verify', function(request, response) {
@@ -113,6 +126,37 @@ router.post('/register', function(request, response) {
    }
 
 });
+
+// Authentication middleware:
+
+function authenticate(request, response, next) {
+
+  if(!request.headers.authentication) {
+    return response.status(400).send('No token supplied')
+
+  }
+
+  if(request.headers.authentication.split(' ')[1]) {
+    var token = request.headers.authentication.split(' ')[1]
+
+    jwt.verify(token, process.env.secret, function(err, decoded) {
+      if(err) {
+
+        return response.status(400).send(err)
+
+      }
+
+      console.log('continuing with middleware chain!')
+
+      next()
+
+
+    })
+
+  }
+  
+
+};
 
 
 

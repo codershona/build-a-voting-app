@@ -225,24 +225,56 @@
 
    	  	var vm = this;
    	vm.title = "PollsController";
+      vm.poll = {
+         options: [],
+         name: ''
+      }
 
-      vm.options = [{
+      vm.poll.options = [{
          name: '',
          votes: 0
 
       }]
 
       vm.addOption = function() {
-         vm.options.push({
+         vm.poll.options.push({
             name: '',
             votes: 0
-            
+
          })
       }
 
       // console.log(vm.options);
 
-   	}
+      vm.addPoll = function() {
+
+         // console.log(vm.poll.name);
+
+         // console.log(vm.poll.options);
+
+        // console.log(vm.poll);
+
+        if(!vm.poll) {
+
+         console.log('Invalid data supplied!');
+         return;
+
+
+        }
+        $http.post('/api/polls', vm.poll)
+          .then(function(response) {
+            
+            console.log(response)
+
+          }, function(err) {
+
+            console.log(err)
+
+          });
+
+       }
+
+   }
 
    	app.controller('PollController', PollController);
 
