@@ -6,9 +6,32 @@ var User = require('../models/user');
 
 // Verification:
 
-route.get('/verify', function(request, response) {
+// router.get('/verify', function(request, response) {
+router.post('/verify', function(request, response) {
   // if(request.headers.authorization)
-  console.log(request.headers);
+  // console.log(request.headers);
+  // var token = request.headers.authorization.split(' ')[1];
+  // var token = request.headers.authorization;
+  // var token = request.headers
+
+  // console.log('token' + token);
+  // console.log(token);
+
+  // console.log(request.body.token);
+
+  if(!request.body.token) {
+    return response.status(400).send('No token has been provided!')
+  }
+
+  jwt.verify(request.body.token, process.env.secret, function(err, decoded) {
+     if(err) {
+
+      return response.status(400).send('Error with Token')
+
+     }
+
+     return response.status(200).send(decoded)
+  })
 
 
 
