@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var PollsSchema = new Schema({
 	user: {
-		type: mongoose.types.ObjectId
+		type: mongoose.SchemaTypes.ObjectId,
 		ref: 'User'
 	},
 	name: {

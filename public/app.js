@@ -219,7 +219,7 @@
 
    	app.controller('PollsController', PollsController);
 
-   function PollsController($location, $window) {
+   function PollsController($location, $window, $http) {
 
    	// body...
 
@@ -263,7 +263,7 @@
         }
         $http.post('/api/polls', vm.poll)
           .then(function(response) {
-            
+
             console.log(response)
 
           }, function(err) {

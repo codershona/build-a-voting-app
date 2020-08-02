@@ -130,6 +130,8 @@ router.post('/register', function(request, response) {
 // Authentication middleware:
 
 function authenticate(request, response, next) {
+  console.log('in authentication middleware');
+  
 
   if(!request.headers.authentication) {
     return response.status(400).send('No token supplied')
@@ -154,7 +156,7 @@ function authenticate(request, response, next) {
     })
 
   }
-  
+
 
 };
 
