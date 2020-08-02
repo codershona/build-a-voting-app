@@ -134,11 +134,21 @@
 
    	app.controller('ProfileController', ProfileController);
 
-   function ProfileController($location, $window) {
+   function ProfileController($location, $window, jwtHelper) {
 
    	// body...
    	  	var vm = this;
    	vm.title = "ProfileController";
+      vm.user = null;
+      var token = $window.localStorage.token;
+
+        var payload = jwtHelper.decodeToken(token).data;
+        // console.log(payload);
+        if(payload) {
+         vm.user = payload;
+         console.log(vm.user);
+
+        }
 
    	}
 
