@@ -219,15 +219,19 @@
 
    	app.controller('PollsController', PollsController);
 
-   function PollsController($location, $window, $http) {
+   function PollsController($location, $window, $http, jwtHelper) {
 
    	// body...
 
    	  	var vm = this;
+        vm.user = jwtHelper.decodeToken($window.localStorage.token)
+         console.log(vm.user.data._id);
+
    	vm.title = "PollsController";
       vm.poll = {
          options: [],
-         name: ''
+         name: '',
+         user: ''
       }
 
       vm.poll.options = [{

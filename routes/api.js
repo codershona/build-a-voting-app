@@ -4,15 +4,29 @@ var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var User = require('../models/user');
 
-var Polls = require('../models/polls');
+// var Polls = require('../models/polls');
+var Poll = require('../models/polls');
 
 // Create a new poll & POST to polls:
 
 
-router.post('/api/polls', authenticate, function(request, response) {
+router.post('/polls', authenticate, function(request, response) {
     
-// needs changes
+ // needs changes
+ // console.log('in post polls');
 
+ if(!request.body.poll) {
+
+   return response.status(400).send('Noo Poll Data Found!');
+
+
+ }
+  
+  var poll = new Poll();
+  poll.name = request.body.poll.name;
+  poll.options = request.body.poll.options;
+  var token = request.headers.authorization.split(' ')[1];
+  
 
 })
 
@@ -131,26 +145,28 @@ router.post('/register', function(request, response) {
 
 function authenticate(request, response, next) {
   console.log('in authentication middleware');
+  // console.log(request.headers.authentication);
+  console.log(request.headers);
   
 
-  if(!request.headers.authentication) {
+  if(!request.headers.authorization) {
     return response.status(400).send('No token supplied')
 
   }
 
-  if(request.headers.authentication.split(' ')[1]) {
-    var token = request.headers.authentication.split(' ')[1]
+  if(request.headers.authorization.split(' ')[1]) {
+    var token = request.headers.authorization.split(' ')[1]
 
     jwt.verify(token, process.env.secret, function(err, decoded) {
       if(err) {
-
+        console.log('error with token');
         return response.status(400).send(err)
 
       }
 
       console.log('continuing with middleware chain!')
 
-      next()
+      next();
 
 
     })
