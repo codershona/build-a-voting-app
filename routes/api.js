@@ -15,18 +15,37 @@ router.post('/polls', authenticate, function(request, response) {
  // needs changes
  // console.log('in post polls');
 
- if(!request.body.poll) {
+ console.log(request.body);
 
-   return response.status(400).send('Noo Poll Data Found!');
+ // if(!request.body.poll) {
+
+  if(!request.body.options || !request.body.name) {
+
+   return response.status(400).send('No Poll Data Found!');
 
 
  }
   
   var poll = new Poll();
-  poll.name = request.body.poll.name;
-  poll.options = request.body.poll.options;
-  var token = request.headers.authorization.split(' ')[1];
-  
+  // poll.name = request.body.poll.name;
+  poll.name = request.body.name;
+  // poll.options = request.body.poll.options;
+  poll.options = request.body.options;
+  // var token = request.headers.authorization.split(' ')[1];
+
+  // poll.user = request.body.poll.id;
+   poll.user = request.body.id;
+
+  poll.save(function(err, res) {
+    if(err) {
+      return response.status(400).send(err)
+
+    }
+     
+     return response.status(201).send(res)
+
+  })
+
 
 })
 

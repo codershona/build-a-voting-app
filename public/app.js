@@ -224,14 +224,18 @@
    	// body...
 
    	  	var vm = this;
-        vm.user = jwtHelper.decodeToken($window.localStorage.token)
-         console.log(vm.user.data._id);
+        // vm.user = jwtHelper.decodeToken($window.localStorage.token)
+     var user = jwtHelper.decodeToken($window.localStorage.token)
+        // vm.id = vm.user.data._id;
+    // vm.id = user.data._id;
+     var id = user.data._id;
 
    	vm.title = "PollsController";
       vm.poll = {
          options: [],
          name: '',
-         user: ''
+         // user: ''
+          user: id
       }
 
       vm.poll.options = [{
