@@ -232,6 +232,7 @@
 
    	vm.title = "PollsController";
     vm.polls = [];
+    
 
       vm.poll = {
          options: [],
@@ -240,7 +241,7 @@
           user: id
       }
 
-      vm.poll.options = [{
+     vm.poll.options = [{
          name: '',
          votes: 0
 
@@ -249,7 +250,7 @@
       //  vm.poll.options
 
       vm.addOption = function() {
-         vm.poll.options.push({
+       vm.poll.options.push({
             name: '',
             votes: 0
 
