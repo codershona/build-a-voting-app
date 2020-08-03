@@ -6,7 +6,9 @@
 
 <hr>
 
-<input type="text" ng-model="vm.poll.options[$index].name" ng-repeat="option in vm.poll.options" placeholder="Option Names" class="form-control" style="padding: 10px;">
+<!-- <input type="text" ng-model="vm.poll.options[$index].name" ng-repeat="option in vm.poll.options" placeholder="Option Names" class="form-control" style="padding: 10px;"> -->
+
+ <input type="text" ng-model="vm.poll.options[$index].name" class="form-control" placeholder="Poll Options" ng-repeat="poll in vm.poll.options track by $index" style="margin-bottom:10px">
 
 <hr>
 
@@ -19,6 +21,12 @@
 
  <button ng-click="vm.addPoll()" ng-disabled="!vm.poll.name" class="btn btn-success">ADD POLL</button>
 <br>
+
+<hr>
+
+<ul>
+	<li np-repeat="poll in vm.polls">{{poll.name}} --- {{poll._id}}</li>
+</ul>
 
 
 

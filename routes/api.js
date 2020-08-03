@@ -7,6 +7,43 @@ var User = require('../models/user');
 // var Polls = require('../models/polls');
 var Poll = require('../models/polls');
 
+// test populate router to get all polls by user id:
+
+router.get('/tester', function(request, response) {
+
+  // User.findById('5f268377e125a516adf9e393')
+  User.findOne({name: 'Rick'})
+  .populate('polls')
+  .exec(function(err, polls) {
+    if(err) {
+      return response.status(400).send(err)
+    }
+    return response.status(200).send(polls)
+  })
+
+});
+
+
+ 
+
+// Get all polls response : 
+
+router.get('/polls', function(request, response) {
+  Poll.find({}, function(err, polls) {
+    if(err) {
+      return response.status(400).send(err)
+
+    }
+    
+    if(polls.length < 1) {
+      return response.status(400).send('No Polls here Yet!!')
+    }
+
+    return response.status(200).send(polls)
+
+  })
+})
+
 // Create a new poll & POST to polls:
 
 

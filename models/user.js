@@ -12,7 +12,10 @@ var UserSchema = new Schema({
     	type: String,
     	required: true
 
-    }
+    },
+    polls: [{
+    	type: mongoose.Schema.Types.ObjectId, ref: 'Polls'
+    }]
 });
 
 

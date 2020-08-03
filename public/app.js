@@ -231,6 +231,8 @@
      var id = user.data._id;
 
    	vm.title = "PollsController";
+    vm.polls = [];
+
       vm.poll = {
          options: [],
          name: '',
@@ -244,6 +246,8 @@
 
       }]
 
+      //  vm.poll.options
+
       vm.addOption = function() {
          vm.poll.options.push({
             name: '',
@@ -254,14 +258,27 @@
 
       // console.log(vm.options);
 
+      vm.getAllPolls = function () {
+
+        $http.get('/api/polls')
+          .then(function(response) {
+            vm.polls = response.data;
+
+          }, function(err) {
+             console.log(err)
+          })
+
+    }
+
+
+    vm.getAllPolls();
+
+
+
+
       vm.addPoll = function() {
 
-         // console.log(vm.poll.name);
-
-         // console.log(vm.poll.options);
-
-        // console.log(vm.poll);
-
+    
         if(!vm.poll) {
 
          console.log('Invalid data supplied!');
@@ -269,12 +286,20 @@
 
 
         }
+
+        
         $http.post('/api/polls', vm.poll)
           .then(function(response) {
 
-            console.log(response)
+            vm.poll = {};
+            vm.getAllPolls();
+
+            // console.log(response)
+            // vm.polls = response.data;
 
           }, function(err) {
+
+            vm.poll = {};
 
             console.log(err)
 
